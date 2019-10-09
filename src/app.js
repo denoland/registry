@@ -5,7 +5,6 @@ const qs = require("querystring");
 const response = require("./response");
 const renderPretty = require("./render");
 const { getEntry } = require("./utils");
-const sendStatic = require("./send_static");
 
 function proxy(pathname) {
   if (pathname.startsWith("/core") || pathname.startsWith("/std")) {
@@ -47,10 +46,6 @@ exports.lambdaHandler = async function lambdaHandler(event, context, callback) {
   if (/^\/x\/[^/]+$/.exec(pathname)) {
     callback(null, response.redirect(pathname + "/"));
     return;
-  }
-
-  if (pathname.startsWith("/~/")) {
-    return sendStatic(pathname.slice(3), callback);
   }
 
   const result = proxy(pathname);

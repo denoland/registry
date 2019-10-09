@@ -1,9 +1,9 @@
 const DATABASE = require("./database.json");
-const { getEntry, html } = require("./utils");
+const { getEntry } = require("./utils");
 
 const LOGO_PATH = "https://deno.land/images/deno_logo_4.gif";
 
-const homepageHTML = html`
+const homepageHTML = /* HTML */ `
   <!DOCTYPE html>
   <html lang="en">
     <head>
