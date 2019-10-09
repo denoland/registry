@@ -7,19 +7,6 @@ const { annotate } = require("./analyze_code");
 const renderBreadcrumbs = require("./breadcrumbs");
 
 function getLines(pathname, code, opts) {
-  if (!opts.raw && (pathname.endsWith(".ts") || pathname.endsWith(".js"))) {
-    try {
-      return {
-        err: null,
-        lines: annotate(pathname, code).split("\n")
-      };
-    } catch (err) {
-      return {
-        err,
-        lines: code.split("\n").map(escapeHtml)
-      };
-    }
-  }
   return {
     err: null,
     lines: code.split("\n").map(escapeHtml)
