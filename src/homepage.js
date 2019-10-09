@@ -75,7 +75,7 @@ const homepageHTML = /* HTML */ `
             .sort((nameA, nameB) => nameA.localeCompare(nameB))
             .map(name => {
               const entry = getEntry(name);
-              const link = `https://deno.land/x/${name}/`;
+              const link = `./${name}/`;
               return `<li><a href="${link}">${name}</a> (<a href="${entry.repo}">repo</a>)</li>`;
             })
             .join("\n")}
