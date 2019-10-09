@@ -1,7 +1,7 @@
 const { Converter } = require("showdown");
 
 const response = require("./response");
-const { escapeHtml, html } = require("./utils");
+const { escapeHtml } = require("./utils");
 
 const converter = new Converter({ emoji: true, tables: true });
 
@@ -9,7 +9,7 @@ module.exports = function renderMarkdown(pathname, source, repo) {
   const url = `https://deno.land${pathname}`;
 
   // prettier-ignore
-  return response.success(html`
+  return response.success(/* HTML */ `
     <!DOCTYPE html>
     <html lang="en">
       <head>

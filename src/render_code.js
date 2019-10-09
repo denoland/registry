@@ -1,7 +1,9 @@
 const path = require("path");
 
 const response = require("./response");
-const { escapeHtml, html } = require("./utils");
+const { escapeHtml } = require("./utils");
+const styles = require("./code_styles");
+const scripts = require("./code_scripts");
 const { transformModuleSpecifier } = require("./transpile_code");
 const { annotate } = require("./analyze_code");
 const renderBreadcrumbs = require("./breadcrumbs");
@@ -12,8 +14,6 @@ function getLines(pathname, code, opts) {
     lines: code.split("\n").map(escapeHtml)
   };
 }
-
-const breakpoint = "(max-device-width: 480px)";
 
 module.exports = function renderCode(pathname, code, entry, opts = {}) {
   const url = `https://deno.land${pathname}`;
@@ -33,7 +33,7 @@ module.exports = function renderCode(pathname, code, entry, opts = {}) {
     .join("\n");
   const maxNumberLength = String(escapedLines.length).length;
 
-  return response.success(html`
+  return response.success(/* HTML */ `
     <!DOCTYPE html>
     <html lang="en">
       <head>
@@ -57,27 +57,8 @@ module.exports = function renderCode(pathname, code, entry, opts = {}) {
         <link rel="stylesheet" href="https://deno.land/style.css" />
         <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.14.2/build/highlight.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.14.2/build/languages/typescript.min.js"></script>
-        <link rel="stylesheet" href="/~/code_viewer/style.css" />
-        <link rel="stylesheet" href="/~/breadcrumbs/style.css" />
         <style>
-          @media ${breakpoint} {
-            pre {
-              width: 100vw;
-              overflow-x: scroll;
-              -webkit-overflow-scrolling: touch;
-            }
-            code.hljs {
-              /* 49em = 80 characters fitting on the line */
-              min-width: calc(49em + ${maxNumberLength + 4}ex);
-              -webkit-overflow-scrolling: touch;
-            }
-          }
-          .line-number::before {
-            width: ${maxNumberLength + 1}ex;
-          }
-          .numbered-line {
-            padding-left: ${maxNumberLength + 4}ex;
-          }
+          ${styles(maxNumberLength)}
         </style>
       </head>
       <body>
@@ -116,10 +97,7 @@ module.exports = function renderCode(pathname, code, entry, opts = {}) {
           : ""}
         <pre><code class="${path.extname(pathname).slice(1) ||
           "no-highlight"}">${lineNumberedCode}</code></pre>
-        <script>
-          window.denoCodeViewer = ${JSON.stringify({ breakpoint })};
-        </script>
-        <script src="/~/code_viewer/script.js"></script>
+        ${scripts}
       </body>
     </html>
   `);

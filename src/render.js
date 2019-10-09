@@ -14,14 +14,6 @@ module.exports = async function render(
 
   const res = await fetch(entry.url + path);
   if (res.status !== 200) return response.notFound();
-  if (
-    !(
-      res.headers.get("Content-Type").startsWith("application/") ||
-      res.headers.get("Content-Type").startsWith("text/")
-    )
-  ) {
-    return response.redirect(url);
-  }
 
   // TODO(ry) use res.arrayBuffer() instead of res.text().
   const content = await res.text();

@@ -1,7 +1,5 @@
 const assert = require("assert");
 
-const { html } = require("./utils");
-
 exports.tests = async function tests() {
   const { annotate } = require("./analyze_code");
 
@@ -11,6 +9,7 @@ exports.tests = async function tests() {
     assert.equal(output, expected.trim());
   }
   const js = String.raw;
+  const html = String.raw;
 
   // prettier-ignore
   runTest("/x/tests/foo.ts", js`
