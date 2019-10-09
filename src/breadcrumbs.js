@@ -38,18 +38,6 @@ module.exports = function renderBreadcrumbs(pathname, entry) {
           `
         );
       }
-      crumbs.push(html`
-        &nbsp;<a href="${entry.repo}"
-          >${(entry.raw.type === "github"
-            ? octicons["mark-github"]
-            : octicons.repo
-          ).toSVG({
-            "aria-label": "View Repository",
-            style:
-              "height: 0.8em; width: auto; fill: currentColor; opacity: 0.5;"
-          })}</a
-        >
-      `);
       const branchUrl =
         entry.raw.type === "github" ? `${entry.repo}/tree/${version}/` : null;
       crumbs.push(
