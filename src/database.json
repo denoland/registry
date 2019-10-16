@@ -49,6 +49,11 @@
     "owner": "zekth",
     "repo": "deno_case_style"
   },
+  "cat_you": {
+    "type": "github",
+    "owner": "SuperC03",
+    "repo": "CatYou-Deno"
+  },
   "chacha20": {
     "type": "github",
     "owner": "chiefbiiko",
