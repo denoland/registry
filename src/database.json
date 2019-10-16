@@ -19,6 +19,11 @@
     "owner": "chiefbiiko",
     "repo": "base64"
   },
+  "bigfloat": {
+    "type": "github",
+    "owner": "davidmartinez10",
+    "repo": "bigfloat-deno"
+  },
   "blake2b": {
     "type": "github",
     "owner": "chiefbiiko",
