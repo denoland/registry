@@ -1,24 +1,10 @@
-# Deno Module Registry
+# Dead code
 
-[![Build Status](https://travis-ci.com/denoland/registry.svg?branch=master)](https://travis-ci.com/denoland/registry)
+This repository used to the code or the https://deno.land/x/ website.
 
-This is the webserver and database for the [https://deno.land/x/](https://deno.land/x/) service.
+deno.land is now using https://github.com/denoland/deno_website2
 
-This service allows people to create pretty URLs which redirect to github (or
-other content). For example:
+The database.json file, containing all third party modules has moved to
+https://github.com/denoland/deno_website2/blob/master/src/database.json
 
-```sh
-deno -A https://deno.land/x/std@v0.2.7/http/file_server.ts
-```
-
-To run the dev server (you shouldn’t need to do this to add a package to the registry):
-
-```sh
-cd src
-npm install
-cp .env.sample .env
-# [follow the instructions in the .env file]
-npm start
-```
-
-the registry will launch at [http://localhost:4000/x/](http://localhost:4000/x/)
+Please submit PRs to denoland/deno_website2, not here.
